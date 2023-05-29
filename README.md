@@ -32,7 +32,7 @@ The project is aimed to be deployed to employees by administrators at organizati
 
 
 ### Better alternatives
--If blocking is the primary goal, the same can be better achieved by configuring the use at network proxy / routers/ firewall levels.
+If blocking is the primary goal, the same can be better achieved by configuring the use at network proxy / routers/ firewall levels.
 
 ### Need more features / report bug
 Create a new issue and we'll start discussion there. Testers and bugs are most welcome 💛 and helpful to make project lucifer a success.
