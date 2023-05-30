@@ -1,0 +1,94 @@
+{
+  "resource_groups": [
+    {
+      "generic_website_group": [
+        {
+          "url": "https://coauth.dev",
+          "doc_node": "body>#hello"
+        }
+      ]
+    },
+    {
+      "source_group": [
+        {
+          "url": "https://github.com"
+        }
+      ]
+    }
+  ],
+  "conditions": [
+    {
+      "action": "block",
+      "props": {
+        "doc_node": "body",
+        "message": {
+          "type":"info",
+          "title": "Title of blocked Page",
+          "description": "Description of Blocked Page"
+        }
+      },
+      "resources": [
+        "generic_website_group"
+      ]
+    },
+    {
+      "action": "popup",
+      "props": {
+        "doc_node": "body",
+        "message": {
+          "type":"warning",
+          "title": "Title of blocked Page",
+          "description": "Description of Blocked Page"
+        }
+      },
+      "resources": [
+        "generic_website_group"
+      ]
+    },
+    {
+      "action": "sticky",
+      "props": {
+        "doc_node": "body",
+        "message": {
+          "type":"error",
+          "title": "Title of blocked Page",
+          "description": "Description of Blocked Page"
+        }
+      },
+      "resources": [
+        "generic_website_group"
+      ]
+    },
+    {
+      "action": "block_keys",
+      "props": {
+        "doc_node": "body",
+        "message": {
+          "title": "Title of blocked Page",
+          "description": "Description of Blocked Page"
+        }
+      },
+      "resources": [
+        "generic_website_group"
+      ]
+    },
+    {
+      "action": "block_copy",
+      "props": {
+        "doc_node": "body"
+      },
+      "resources": [
+        "generic_website_group"
+      ]
+    },
+    {
+      "action": "block_paste",
+      "props": {
+        "doc_node": "body"
+      },
+      "resources": [
+        "generic_website_group"
+      ]
+    }
+  ]
+}
