@@ -1,93 +1,180 @@
 {
   "resource_groups": [
     {
-      "generic_website_group": [
+      "search_engine_group": [
         {
-          "url": "https://coauth.dev",
-          "doc_node": "body>#hello"
+          "url": "/^(?:https?:\\/\\/)?(?:[^.]+\\.)?google\\.com(\\/.*)?$"
+        },
+        {
+          "url": "/^(?:https?:\\/\\/)?(?:[^.]+\\.)?bing\\.com(\\/.*)?$"
+        }
+
+      ]
+    },
+    {
+      "exclude_group": [
+        {
+          "url": "/^(?:https?:\\/\\/)?(?:[^.]+\\.)?mail\\.google\\.com(\\/.*)?$"
+        }
+      ]
+    },
+    {
+      "blocked_group": [
+        {
+          "url": "/^(?:https?:\\/\\/)?(?:[^.]+\\.)?w3schools\\.com(\\/.*)?$"
+        },
+        {
+          "url": "/^(?:https?:\\/\\/)?(?:[^.]+\\.)?leetcode\\.com(\\/.*)?$"
         }
       ]
     },
     {
       "source_group": [
         {
-          "url": "https://github.com"
+          "url": "/^(?:https?:\\/\\/)?(?:[^.]+\\.)?github\\.com(\\/.*)?$"
+        },
+        {
+          "url": "/^(?:https?:\\/\\/)?(?:[^.]+\\.)?stackoverflow\\.com(\\/.*)?$"
+        },
+        {
+          "url": "/^(?:https?:\\/\\/)?(?:[^.]+\\.)?bitbucket\\.com(\\/.*)?$"
+        }
+      ]
+    },
+    {
+      "bot_group": [
+        {
+          "url": "/^(?:https?:\\/\\/)?(?:[^.]+\\.)?copy\\.ai(\\/.*)?$"
+        },
+        {
+          "url": "/^(?:https?:\\/\\/)?(?:[^.]+\\.)?contentbot\\.ai(\\/.*)?$"
+        },
+        {
+          "url": "/^(?:https?:\\/\\/)?(?:[^.]+\\.)?scalenut\\.com(\\/.*)?$"
+        },
+        {
+          "url": "/^(?:https?:\\/\\/)?(?:[^.]+\\.)?neuroflash\\.com(\\/.*)?$"
+        },
+        {
+          "url": "/^(?:https?:\\/\\/)?(?:[^.]+\\.)?rytr\\.me(\\/.*)?$"
+        },
+        {
+          "url": "/^(?:https?:\\/\\/)?(?:[^.]+\\.)?paragraph\\.com(\\/.*)?$"
+        },
+        {
+          "url": "/^(?:https?:\\/\\/)?(?:[^.]+\\.)?simplified\\.com(\\/.*)?$"
+        },
+        {
+          "url": "/^(?:https?:\\/\\/)?(?:[^.]+\\.)?unbounce\\.com(\\/.*)?$"
+        }
+        
+        
+        ,
+        {
+          "url": "/^(?:https?:\\/\\/)?(?:[^.]+\\.)?jasper\\.ai(\\/.*)?$"
+        },
+        {
+          "url": "/^(?:https?:\\/\\/)?(?:[^.]+\\.)?growthbarseo\\.com(\\/.*)?$"
+        },
+        {
+          "url": "/^(?:https?:\\/\\/)?(?:[^.]+\\.)?writesonic\\.com(\\/.*)?$"
+        },
+        {
+          "url": "/^(?:https?:\\/\\/)?(?:[^.]+\\.)?ai-writer\\.com(\\/.*)?$"
+        },
+        {
+          "url": "/^(?:https?:\\/\\/)?(?:[^.]+\\.)?app\\.copysmith\\.ai(\\/.*)?$"
+        },
+        {
+          "url": "/^(?:https?:\\/\\/)?(?:[^.]+\\.)?anyword\\.com(\\/.*)?$"
+        }
+        ,
+        {
+          "url": "/^(?:https?:\\/\\/)?(?:[^.]+\\.)?peppertype\\.ai(\\/.*)?$"
         }
       ]
     }
   ],
   "conditions": [
     {
-      "action": "block",
+      "action": "block_page",
       "props": {
-        "doc_node": "body",
         "message": {
-          "type":"info",
-          "title": "Title of blocked Page",
-          "description": "Description of Blocked Page"
+          "type":"danger",
+          "location":"top",
+          "title": "Website blocked",
+          "description": "The website you are trying to access has been blocked globally across organization for security reasons. For more information on the policy you can visit (link)[https://support.google.com/chrome/a/thread/12877606/group-policy-blacklist-blocking-pdfs?hl=en]. Contact administrator, incase of any discrepancy."
         }
       },
       "resources": [
-        "generic_website_group"
+        "blocked_group"
       ]
     },
     {
-      "action": "popup",
+      "action": "disclaimer",
       "props": {
-        "doc_node": "body",
         "message": {
           "type":"warning",
-          "title": "Title of blocked Page",
-          "description": "Description of Blocked Page"
+          "location":"bottom",
+          "title": "Data disclosure disclaimer",
+          "description": "As per the organizations policy. Please ensure that you do not enter any company sensitive information on these sites that you navigate hereforth. For more information on the policy you can visit (link)[https://support.google.com/chrome/a/thread/12877606/group-policy-blacklist-blocking-pdfs?hl=en]."
         }
       },
       "resources": [
-        "generic_website_group"
+        "search_engine_group"
       ]
     },
     {
       "action": "sticky",
       "props": {
-        "doc_node": "body",
         "message": {
           "type":"error",
-          "title": "Title of blocked Page",
-          "description": "Description of Blocked Page"
+          "location":"bottom",
+          "title": "Data disclosure disclaimer",
+          "description": "As per the organizations policy. Please ensure that you do not enter any company sensitive information / data on these sites. For more information on the policy you can visit (link)[https://support.google.com/chrome/a/thread/12877606/group-policy-blacklist-blocking-pdfs?hl=en]."
         }
       },
       "resources": [
-        "generic_website_group"
-      ]
-    },
-    {
-      "action": "block_keys",
-      "props": {
-        "doc_node": "body",
-        "message": {
-          "title": "Title of blocked Page",
-          "description": "Description of Blocked Page"
-        }
-      },
-      "resources": [
-        "generic_website_group"
+        "source_group","bot_group"
       ]
     },
     {
       "action": "block_copy",
       "props": {
-        "doc_node": "body"
+        "message": {
+          "title": "Copy action blocked",
+          "location":"top",
+          "description": "For security reasons **copy action** has been blocked on this website"
+        }
       },
       "resources": [
-        "generic_website_group"
+        "bot_group"
       ]
     },
     {
       "action": "block_paste",
       "props": {
-        "doc_node": "body"
+        "message": {
+          "title": "Paste action blocked",
+          "location":"top",
+          "description": "For security reasons **paste action** has been blocked on this website"
+        }
       },
       "resources": [
-        "generic_website_group"
+        "bot_group"
+      ]
+    },
+    {
+      "action": "block_cut",
+      "props": {
+        "message": {
+          "title": "Cut action blocked",
+          "location":"bottom",
+          "description": "For security reasons **cut action** has been blocked on this website"
+        }
+      },
+      "resources": [
+        "bot_group"
       ]
     }
   ]
