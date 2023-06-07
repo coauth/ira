@@ -21,76 +21,73 @@
     {
       "blocked_group": [
         {
-          "url": "/^(?:https?:\\/\\/)?(?:[^.]+\\.)?w3schools\\.com(\\/.*)?$"
+          "url": "^https?:\\/\\/(www\\.)?w3chools.com?(\\/.*)?$"
         },
         {
-          "url": "/^(?:https?:\\/\\/)?(?:[^.]+\\.)?leetcode\\.com(\\/.*)?$"
+          "url": "^https?:\\/\\/(www\\.)?leetcode.com?(\\/.*)?$"
         }
       ]
     },
     {
       "source_group": [
         {
-          "url": "/^(?:https?:\\/\\/)?(?:[^.]+\\.)?github\\.com(\\/.*)?$"
+          "url": "^https?:\\/\\/(www\\.)?github.com?(\\/.*)?$"
         },
         {
-          "url": "/^(?:https?:\\/\\/)?(?:[^.]+\\.)?stackoverflow\\.com(\\/.*)?$"
+          "url": "^https?:\\/\\/(www\\.)?stackoverflow.com?(\\/.*)?$"
         },
         {
-          "url": "/^(?:https?:\\/\\/)?(?:[^.]+\\.)?bitbucket\\.com(\\/.*)?$"
+          "url": "^https?:\\/\\/(www\\.)?bitbucket.com?(\\/.*)?$"
         }
       ]
     },
     {
       "bot_group": [
         {
-          "url": "/^(?:https?:\\/\\/)?(?:[^.]+\\.)?copy\\.ai(\\/.*)?$"
+          "url": "^https?:\\/\\/(www\\.)?copy\\.ai(\\/.*)?$"
         },
         {
-          "url": "/^(?:https?:\\/\\/)?(?:[^.]+\\.)?contentbot\\.ai(\\/.*)?$"
+          "url": "^https?:\\/\\/(www\\.)?contentbot\\.ai(\\/.*)?$"
         },
         {
-          "url": "/^(?:https?:\\/\\/)?(?:[^.]+\\.)?scalenut\\.com(\\/.*)?$"
+          "url": "^https?:\\/\\/(www\\.)?scalenut\\.com(\\/.*)?$"
         },
         {
-          "url": "/^(?:https?:\\/\\/)?(?:[^.]+\\.)?neuroflash\\.com(\\/.*)?$"
+          "url": "^https?:\\/\\/(www\\.)?neuroflash\\.com(\\/.*)?$"
         },
         {
-          "url": "/^(?:https?:\\/\\/)?(?:[^.]+\\.)?rytr\\.me(\\/.*)?$"
+          "url": "^https?:\\/\\/(www\\.)?rytr\\.me(\\/.*)?$"
         },
         {
-          "url": "/^(?:https?:\\/\\/)?(?:[^.]+\\.)?paragraph\\.com(\\/.*)?$"
+          "url": "^https?:\\/\\/(www\\.)?paragraph\\.com(\\/.*)?$"
         },
         {
-          "url": "/^(?:https?:\\/\\/)?(?:[^.]+\\.)?simplified\\.com(\\/.*)?$"
+          "url": "^https?:\\/\\/(www\\.)?simplified\\.com(\\/.*)?$"
         },
         {
-          "url": "/^(?:https?:\\/\\/)?(?:[^.]+\\.)?unbounce\\.com(\\/.*)?$"
-        }
-        
-        
-        ,
-        {
-          "url": "/^(?:https?:\\/\\/)?(?:[^.]+\\.)?jasper\\.ai(\\/.*)?$"
+          "url": "^https?:\\/\\/(www\\.)?unbounce\\.com(\\/.*)?$"
         },
         {
-          "url": "/^(?:https?:\\/\\/)?(?:[^.]+\\.)?growthbarseo\\.com(\\/.*)?$"
+          "url": "^https?:\\/\\/(www\\.)?jasper\\.ai(\\/.*)?$"
         },
         {
-          "url": "/^(?:https?:\\/\\/)?(?:[^.]+\\.)?writesonic\\.com(\\/.*)?$"
+          "url": "^https?:\\/\\/(www\\.)?growthbarseo\\.com(\\/.*)?$"
         },
         {
-          "url": "/^(?:https?:\\/\\/)?(?:[^.]+\\.)?ai-writer\\.com(\\/.*)?$"
+          "url": "^https?:\\/\\/(www\\.)?writesonic\\.com(\\/.*)?$"
         },
         {
-          "url": "/^(?:https?:\\/\\/)?(?:[^.]+\\.)?app\\.copysmith\\.ai(\\/.*)?$"
+          "url": "^https?:\\/\\/(www\\.)?ai-writer\\.com(\\/.*)?$"
         },
         {
-          "url": "/^(?:https?:\\/\\/)?(?:[^.]+\\.)?anyword\\.com(\\/.*)?$"
+          "url": "^https?:\\/\\/(www\\.)?copysmith\\.ai(\\/.*)?$"
+        },
+        {
+          "url": "^https?:\\/\\/(www\\.)?anyword\\.com(\\/.*)?$"
         }
         ,
         {
-          "url": "/^(?:https?:\\/\\/)?(?:[^.]+\\.)?peppertype\\.ai(\\/.*)?$"
+          "url": "^https?:\\/\\/(www\\.)?peppertype\\.ai(\\/.*)?$"
         }
       ]
     }
