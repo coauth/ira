@@ -21,7 +21,7 @@
     {
       "blocked_group": [
         {
-          "url": "^https?:\\/\\/(www\\.)?w3chools.com?(\\/.*)?$"
+          "url": "^https?:\\/\\/(www\\.)?w3schools.com?(\\/.*)?$"
         },
         {
           "url": "^https?:\\/\\/(www\\.)?leetcode.com?(\\/.*)?$"
@@ -146,7 +146,7 @@
         }
       },
       "resources": [
-        "bot_group"
+        "bot_group","search_engine_group"
       ]
     },
     {
@@ -155,12 +155,12 @@
         "message": {
           "alertType":"info",
           "title": "Paste action blocked",
-          "location":"top",
+          "location":"bottom",
           "description": "For security reasons **paste action** has been blocked on this website"
         }
       },
       "resources": [
-        "bot_group"
+        "bot_group","search_engine_group"
       ]
     },
     {
