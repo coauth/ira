@@ -114,7 +114,7 @@
       "action": "disclaimer",
       "props": {
         "message": {
-          "type":"warning",
+          "alertType":"warning",
           "location":"bottom",
           "title": "Data disclosure disclaimer",
           "description": "As per the organizations policy. Please ensure that you do not enter any company sensitive information on these sites that you navigate hereforth. For more information on the policy you can visit (link)[https://support.google.com/chrome/a/thread/12877606/group-policy-blacklist-blocking-pdfs?hl=en]."
@@ -128,7 +128,7 @@
       "action": "sticky",
       "props": {
         "message": {
-          "type":"error",
+          "alertType":"danger",
           "location":"bottom",
           "title": "Data disclosure disclaimer",
           "description": "As per the organizations policy. Please ensure that you do not enter any company sensitive information / data on these sites. For more information on the policy you can visit (link)[https://support.google.com/chrome/a/thread/12877606/group-policy-blacklist-blocking-pdfs?hl=en]."
@@ -142,6 +142,7 @@
       "action": "block_copy",
       "props": {
         "message": {
+          "alertType":"info",
           "title": "Copy action blocked",
           "location":"top",
           "description": "For security reasons **copy action** has been blocked on this website"
@@ -155,6 +156,7 @@
       "action": "block_paste",
       "props": {
         "message": {
+          "alertType":"info",
           "title": "Paste action blocked",
           "location":"top",
           "description": "For security reasons **paste action** has been blocked on this website"
@@ -168,6 +170,7 @@
       "action": "block_cut",
       "props": {
         "message": {
+          "alertType":"info",
           "title": "Cut action blocked",
           "location":"bottom",
           "description": "For security reasons **cut action** has been blocked on this website"
