@@ -97,7 +97,7 @@
       "action": "block_page",
       "props": {
         "message": {
-          "type":"danger",
+          "alertType":"danger",
           "location":"top",
           "title": "Website blocked",
           "description": "The website you are trying to access has been blocked globally across organization for security reasons. For more information on the policy you can visit [link](https://support.google.com/chrome/a/thread/12877606/group-policy-blacklist-blocking-pdfs?hl=en). Contact administrator, incase of any discrepancy."
