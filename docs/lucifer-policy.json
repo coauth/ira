@@ -3,10 +3,10 @@
     {
       "search_engine_group": [
         {
-          "url": "/^(?:https?:\\/\\/)?(?:[^.]+\\.)?google\\.com(\\/.*)?$"
+          "url": "^https?:\\/\\/(www\\.)?google.com?(\\/.*)?$"
         },
         {
-          "url": "/^(?:https?:\\/\\/)?(?:[^.]+\\.)?bing\\.com(\\/.*)?$"
+          "url": "^https?:\\/\\/(www\\.)?bing.com?(\\/.*)?$"
         }
 
       ]
