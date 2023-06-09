@@ -1,30 +1,16 @@
 {
   "resource_groups": [
     {
-      "search_engine_group": [
+      "block_page_group": [
         {
-          "url": "^https?:\\/\\/(www\\.)?google.com?(\\/.*)?$"
-        },
-        {
-          "url": "^https?:\\/\\/(www\\.)?bing.com?(\\/.*)?$"
-        }
-
-      ]
-    },
-    {
-      "exclude_group": [
-        {
-          "url": "/^(?:https?:\\/\\/)?(?:[^.]+\\.)?mail\\.google\\.com(\\/.*)?$"
+          "url": "^https?:\\/\\/(www\\.)?coauth.dev?(\\/.*)?$"
         }
       ]
     },
     {
-      "blocked_group": [
+      "disclaimer_group": [
         {
-          "url": "^https?:\\/\\/(www\\.)?w3schools.com?(\\/.*)?$"
-        },
-        {
-          "url": "^https?:\\/\\/(www\\.)?leetcode.com?(\\/.*)?$"
+          "url": "^https?:\\/\\/(www\\.)?stackoverflow.com?(\\/.*)?$"
         }
       ]
     },
@@ -34,60 +20,21 @@
           "url": "^https?:\\/\\/(www\\.)?github.com?(\\/.*)?$"
         },
         {
-          "url": "^https?:\\/\\/(www\\.)?stackoverflow.com?(\\/.*)?$"
-        },
-        {
           "url": "^https?:\\/\\/(www\\.)?bitbucket.com?(\\/.*)?$"
+        }
+      ]
+    },
+    {
+      "block_cut_copy_paste_group": [
+        {
+          "url": "^https?:\\/\\/(www\\.)?quillbot.com?(\\/.*)?$"
         }
       ]
     },
     {
       "bot_group": [
         {
-          "url": "^https?:\\/\\/(www\\.)?copy\\.ai(\\/.*)?$"
-        },
-        {
-          "url": "^https?:\\/\\/(www\\.)?contentbot\\.ai(\\/.*)?$"
-        },
-        {
-          "url": "^https?:\\/\\/(www\\.)?scalenut\\.com(\\/.*)?$"
-        },
-        {
-          "url": "^https?:\\/\\/(www\\.)?neuroflash\\.com(\\/.*)?$"
-        },
-        {
-          "url": "^https?:\\/\\/(www\\.)?rytr\\.me(\\/.*)?$"
-        },
-        {
-          "url": "^https?:\\/\\/(www\\.)?paragraph\\.com(\\/.*)?$"
-        },
-        {
-          "url": "^https?:\\/\\/(www\\.)?simplified\\.com(\\/.*)?$"
-        },
-        {
-          "url": "^https?:\\/\\/(www\\.)?unbounce\\.com(\\/.*)?$"
-        },
-        {
-          "url": "^https?:\\/\\/(www\\.)?jasper\\.ai(\\/.*)?$"
-        },
-        {
-          "url": "^https?:\\/\\/(www\\.)?growthbarseo\\.com(\\/.*)?$"
-        },
-        {
-          "url": "^https?:\\/\\/(www\\.)?writesonic\\.com(\\/.*)?$"
-        },
-        {
-          "url": "^https?:\\/\\/(www\\.)?ai-writer\\.com(\\/.*)?$"
-        },
-        {
-          "url": "^https?:\\/\\/(www\\.)?copysmith\\.ai(\\/.*)?$"
-        },
-        {
-          "url": "^https?:\\/\\/(www\\.)?anyword\\.com(\\/.*)?$"
-        }
-        ,
-        {
-          "url": "^https?:\\/\\/(www\\.)?peppertype\\.ai(\\/.*)?$"
+          "url": "^https?:\\/\\/(www\\.)?openai\\.com(\\/.*)?$"
         }
       ]
     }
@@ -97,84 +44,88 @@
       "action": "block_page",
       "props": {
         "message": {
-          "alertType":"danger",
-          "location":"top",
+          "alertType": "danger",
+          "location": "top",
           "title": "Website blocked",
-          "description": "The website you are trying to access has been blocked globally across organization for security reasons. For more information on the policy you can visit [link](https://support.google.com/chrome/a/thread/12877606/group-policy-blacklist-blocking-pdfs?hl=en). Contact administrator, incase of any discrepancy."
+          "description": "The website you are trying to access has been blocked globally across organization for security reasons. For more information on the policy you can visit [link](https://ira.coauth.dev). Contact administrator, incase of any discrepancy."
         }
       },
       "resources": [
-        "blocked_group"
+        "block_page_group"
       ]
     },
     {
       "action": "disclaimer",
       "props": {
         "message": {
-          "alertType":"warning",
-          "location":"bottom",
+          "alertType": "warning",
+          "location": "bottom",
           "title": "Data disclosure disclaimer",
-          "description": "As per the organizations policy. Please ensure that you do not enter any company sensitive information on these sites that you navigate hereforth. For more information on the policy you can visit [link](https://support.google.com/chrome/a/thread/12877606/group-policy-blacklist-blocking-pdfs?hl=en)."
+          "description": "As per the organizations policy. Please ensure that you do not enter any company sensitive information on these sites that you navigate hereforth. For more information on the policy you can visit [link](https://ira.coauth.dev)."
         }
       },
       "resources": [
-        "search_engine_group"
+        "disclaimer_group"
       ]
     },
     {
       "action": "sticky",
       "props": {
         "message": {
-          "alertType":"danger",
-          "location":"bottom",
+          "alertType": "danger",
+          "location": "bottom",
           "title": "Data disclosure disclaimer",
-          "description": "As per the organizations policy. Please ensure that you do not enter any company sensitive information / data on these sites. For more information on the policy you can visit [link](https://support.google.com/chrome/a/thread/12877606/group-policy-blacklist-blocking-pdfs?hl=en)."
+          "description": "As per the organizations policy. Please ensure that you do not enter any company sensitive information / data on these sites. For more information on the policy you can visit [link](https://ira.coauth.dev)."
         }
       },
       "resources": [
-        "source_group","bot_group"
+        "source_group",
+        "bot_group"
       ]
     },
     {
       "action": "block_copy",
       "props": {
         "message": {
-          "alertType":"info",
+          "alertType": "info",
           "title": "Copy action blocked",
-          "location":"top",
+          "location": "top",
           "description": "For security reasons **copy action** has been blocked on this website"
         }
       },
       "resources": [
-        "bot_group","search_engine_group"
+        "bot_group",
+        "block_cut_copy_paste_group"
       ]
     },
     {
       "action": "block_paste",
       "props": {
         "message": {
-          "alertType":"info",
+          "alertType": "info",
           "title": "Paste action blocked",
-          "location":"bottom",
+          "location": "bottom",
           "description": "For security reasons **paste action** has been blocked on this website"
         }
       },
       "resources": [
-        "bot_group","search_engine_group"
+        "bot_group",
+        "block_cut_copy_paste_group"
       ]
     },
     {
       "action": "block_cut",
       "props": {
         "message": {
-          "alertType":"info",
+          "alertType": "info",
           "title": "Cut action blocked",
-          "location":"bottom",
+          "location": "bottom",
           "description": "For security reasons **cut action** has been blocked on this website"
         }
       },
       "resources": [
-        "bot_group"
+        "bot_group",
+        "block_cut_copy_paste_group"
       ]
     }
   ]
