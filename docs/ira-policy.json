@@ -3,31 +3,31 @@
     {
       "block_page_group": [
         {
-          "url": "^https?:\\/\\/(www\\.)?leetcode.com?(\\/.*)?$"
+          "url": "^https?:\\/\\/(www\\.)?leetcode\\.com?(\\/.*)?$"
         }
       ]
     },
     {
       "disclaimer_group": [
         {
-          "url": "^https?:\\/\\/(www\\.)?stackoverflow.com?(\\/.*)?$"
+          "url": "^https?:\\/\\/(www\\.)?stackoverflow\\.com?(\\/.*)?$"
         }
       ]
     },
     {
       "source_group": [
         {
-          "url": "^https?:\\/\\/(www\\.)?github.com?(\\/.*)?$"
+          "url": "^https?:\\/\\/(www\\.)?github\\.com?(\\/.*)?$"
         },
         {
-          "url": "^https?:\\/\\/(www\\.)?bitbucket.com?(\\/.*)?$"
+          "url": "^https?:\\/\\/(www\\.)?bitbucket\\.com?(\\/.*)?$"
         }
       ]
     },
     {
       "block_cut_copy_paste_group": [
         {
-          "url": "^https?:\\/\\/(www\\.)?quillbot.com?(\\/.*)?$"
+          "url": "^https?:\\/\\/(www\\.)?quillbot\\.com?(\\/.*)?$"
         }
       ]
     },
