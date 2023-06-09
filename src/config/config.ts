@@ -2,8 +2,8 @@
 
 const appConfig = {
     policyConfig: {
-        internalUrl: "https://coauth.dev/point-out/point-out-policy.json",
-        externalUrl: "https://coauth.dev/point-out/point-out-policy.json",
+        internalUrl: "https://coauth.dev/ira/ira-policy.json",
+        externalUrl: "https://coauth.dev/ira/ira-policy.json",
         policyFetchInternalInSeconds:1
     },
     toastTimeoutInSeconds:5,

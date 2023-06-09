@@ -1,6 +1,6 @@
 {
-    "name": "svelte-ts-extension-boilerplate",
-    "description": "Boilerplate for Chrome Extension Svelte Typescript project",
+    "name": "Ira",
+    "description": "The guard to make users aware of potential risks of browsing on third party sites",
     "version": "1.0",
     "manifest_version": 3,
     "icons": {
