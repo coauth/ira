@@ -3,7 +3,7 @@
     {
       "block_page_group": [
         {
-          "url": "^https?:\\/\\/(www\\.)?coauth.dev?(\\/.*)?$"
+          "url": "^https?:\\/\\/(www\\.)?leetcode.com?(\\/.*)?$"
         }
       ]
     },
