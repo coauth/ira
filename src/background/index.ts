@@ -11,7 +11,7 @@ let configuration = new Map<string, Map<string,TPolicyMessage>>();
 
 let messageStore = new Map<number, Array<TPolicyAction>>();
 
-let disclaimerAcceptableStore = new Map<string, Moment>();
+let disclaimerAcceptanaceStore = new Map<string, Date>();
 
 
 
@@ -24,7 +24,7 @@ browser.tabs.onRemoved.addListener(cleanUpOnTabClose);
 browser.webNavigation.onBeforeNavigate.addListener((details) => {
     const { tabId, url, timeStamp, frameId } = details;
 
-    let policyActions: Array<TPolicyAction> = policyValidator(url,configuration);
+    let policyActions: Array<TPolicyAction> = policyValidator(url,configuration,disclaimerAcceptanaceStore);
     if(policyActions.length!=0){
         messageStore.set(tabId, policyActions);
         for(let policyAction of policyActions){
@@ -49,7 +49,8 @@ const processContentScriptsListener = ((request: any, sender, sendResponse): voi
             const newTime=moment().add(category.data.duration,'seconds');
             let domain = (new URL(sender.url));
             console.log("domain.hostname",domain.hostname);
-            disclaimerAcceptableStore.set(domain.hostname,newTime);
+            disclaimerAcceptanaceStore.set(domain.hostname,newTime.toDate());
+            console.log("disclaimerAcceptanaceStore",disclaimerAcceptanaceStore);
         }
     }
 });
