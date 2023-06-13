@@ -8,7 +8,8 @@ export type TPolicyMessage = {
         title?: string,
         description:string,
         location: string,
-        alertType: 'danger' | 'warning' | 'info' | 'success' |'none'
+        alertType: 'danger' | 'warning' | 'info' | 'success' |'none',
+        durationInSeconds: number
 }
 
 export const policyValidator = (url: string,configurationMap:Map<string,Map<string,TPolicyMessage>>): Array<TPolicyAction> => {

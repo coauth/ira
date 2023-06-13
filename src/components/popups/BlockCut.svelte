@@ -6,6 +6,8 @@
     import type { TAlertProps } from "../types/AlertPropsTypes";
     import AlertContent from "./AlertContent.svelte";
     import type { TPolicyMessage } from "../helpers/PolicyHelper";
+    import jQuery from "jquery";
+
 
     export let props: TPolicyMessage;
 

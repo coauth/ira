@@ -3,6 +3,8 @@
     import type { TAlertProps } from "../types/AlertPropsTypes";
     import type { TPolicyMessage } from "../helpers/PolicyHelper";
     import Showdown from "showdown";
+    import browser from "webextension-polyfill";
+
     let defaultModal = true;
 
     export let props: TPolicyMessage;
@@ -16,6 +18,19 @@
         alertColor = "blue";
     } else if (props.alertType == "success") {
         alertColor = "green";
+    }
+
+
+
+    const diclaimerAccepted=(durationInSeconds)=>{
+        let askMessage = {
+            category: "STORE_DISCLAIMER_ACCEPTANCE",
+            data:{
+                duration:durationInSeconds
+            }
+        };
+        console.log("askMessage",askMessage);
+        browser.runtime.sendMessage(askMessage);
     }
 
     const mdConvertor = new Showdown.Converter();
@@ -36,9 +51,10 @@
         }
     }, 2000);
 
-    const closeModal = () => {
+    const closeModal = (durationInSeconds:number) => {
         document.getElementById("overlayCustom").style.display = "none";
         document.getElementById("staticModal").style.display = "none";
+        diclaimerAccepted(durationInSeconds);
     };
 </script>
 
@@ -155,7 +171,7 @@
                     data-modal-hide="staticModal"
                     type="button"
                     class="text-white bg-gray-900 font-medium rounded-lg text-sm px-5 py-2.5 text-center"
-                    on:click={closeModal}>Acknowledge & Continue</button
+                    on:click={()=>closeModal(props.durationInSeconds)}>Acknowledge & Continue</button
                 >
             </div>
         </div>

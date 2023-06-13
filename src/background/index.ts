@@ -5,10 +5,14 @@ import { policyValidator, type TPolicyAction, policyParser, type TPolicyMessage 
 import appConfig from "src/config/config";
 import type { TMessageExchange } from "src/components/types/MessageExchangeType";
 import type { TMessageCategory } from "src/components/types/MessageCategoryTypes";
+import moment, { type Moment } from 'moment';
 
 let configuration = new Map<string, Map<string,TPolicyMessage>>();
 
 let messageStore = new Map<number, Array<TPolicyAction>>();
+
+let disclaimerAcceptableStore = new Map<string, Moment>();
+
 
 
 const cleanUpOnTabClose = ((tabId: number,): void => {
@@ -38,9 +42,16 @@ const processContentScriptsListener = ((request: any, sender, sendResponse): voi
         let category = request as TMessageCategory;
         if (category.category === 'REQUEST_MESSAGE') {
             sendResponse({ response: messageStore.get(sender.tab.id) });
+        }else if(category.category === 'STORE_DISCLAIMER_ACCEPTANCE') {
+            console.log("disclaimer received");
+            console.log("category.data.duration",category.data.duration);
+            
+            const newTime=moment().add(category.data.duration,'seconds');
+            let domain = (new URL(sender.url));
+            console.log("domain.hostname",domain.hostname);
+            disclaimerAcceptableStore.set(domain.hostname,newTime);
         }
     }
-
 });
 
 const addContentScriptsMessageListener = () => {

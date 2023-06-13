@@ -15,6 +15,7 @@
         description: "",
         location: "",
         alertType: "none",
+        durationInSeconds:1
     };
 
     let actor: TPolicyAction = { action: "none", message: defaultMessage };
