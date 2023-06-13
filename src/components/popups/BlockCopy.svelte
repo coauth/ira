@@ -3,6 +3,7 @@
     import { Toast, Button } from "flowbite-svelte";
     import { fly } from "svelte/transition";
     import appConfig from "src/config/config";
+    import jQuery from "jquery";
     import type { TAlertProps } from "../types/AlertPropsTypes";
     import AlertContent from "./AlertContent.svelte";
     import type { TPolicyMessage } from "../helpers/PolicyHelper";
@@ -11,34 +12,29 @@
 
     let toastStatus = false;
 
-    let timeoutVariable;
+    let timeoutVariable: any;
 
     const changeStatus = () => {
         toastStatus = true;
     };
 
-    document.addEventListener(
-        "copy",
-        (evt) => {
-            evt.clipboardData.setData(
-                "text/plain",
-                appConfig.copyBlockedClipboardContent
-            );
-            changeStatus();
-            timeoutVariable = setTimeout(() => {
-                toastStatus = false;
-            }, appConfig.toastTimeoutInSeconds * 1000);
-            evt.preventDefault();
-        },
-        false
-    );
-    let position:string;
-    if(props.location==='top'){
-        position='top';
-    }else{
-        position='bottom';
-    }
+    jQuery(document).on("copy", function (e) {
+        changeStatus();
+        console.log("copy called");
+        navigator.clipboard.writeText(appConfig.copyBlockedClipboardContent);
+        timeoutVariable = setTimeout(() => {
+            toastStatus = false;
+        }, appConfig.toastTimeoutInSeconds * 1000);
+        e.preventDefault();
+        return false;
+    });
 
+    let position: string;
+    if (props.location === "top") {
+        position = "top";
+    } else {
+        position = "bottom";
+    }
 </script>
 
 <div

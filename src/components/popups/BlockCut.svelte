@@ -17,24 +17,18 @@
         toastStatus = true;
     };
 
-    document.addEventListener(
-        "cut",
-        (evt) => {
-            // (B1) CHANGE THE COPIED TEXT IF YOU WANT
-            evt.clipboardData.setData(
-                "text/plain",
-                appConfig.cutBlockedClipboardContent
-            );
-            changeStatus();
-            timeoutVariable = setTimeout(() => {
-                toastStatus = false;
-            }, appConfig.toastTimeoutInSeconds * 1000);
 
-            // (B2) PREVENT THE DEFAULT COPY ACTION
-            evt.preventDefault();
-        },
-        false
-    );
+    jQuery(document).on("cut", function (e) {
+        e.preventDefault();
+        changeStatus();
+        console.log("cut called");
+        navigator.clipboard.writeText(appConfig.cutBlockedClipboardContent);
+        timeoutVariable = setTimeout(() => {
+            toastStatus = false;
+        }, appConfig.toastTimeoutInSeconds * 1000);
+        return false;
+    });
+
     let position:string;
     if(props.location==='top'){
         position='top';

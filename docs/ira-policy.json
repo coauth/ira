@@ -34,7 +34,7 @@
     {
       "bot_group": [
         {
-          "url": "^https?:\\/\\/(www\\.)?openai\\.com(\\/.*)?$"
+          "url": "^https?:\\/\\/(www\\.)?([a-zA-Z0-9][a-zA-Z0-9-_\\.]*\\.)?openai\\.com(\\/.*)?$"
         }
       ]
     }
@@ -65,6 +65,7 @@
         }
       },
       "resources": [
+        "bot_group",
         "disclaimer_group"
       ]
     },

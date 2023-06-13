@@ -3,7 +3,7 @@
     import { Toast, Button } from "flowbite-svelte";
     import { fly } from "svelte/transition";
     import appConfig from "src/config/config";
-    import * as jQuery from "jquery";
+    import jQuery from "jquery";
     import AlertContent from "./AlertContent.svelte";
     import type { TAlertProps } from "../types/AlertPropsTypes";
     import type { TPolicyMessage } from "../helpers/PolicyHelper";
@@ -14,62 +14,58 @@
 
     let timeoutVariable;
 
-    const changeStatus = () => {
+    const reactOnPaste = () => {
         toastStatus = true;
+        timeoutVariable = setTimeout(() => {
+            toastStatus = false;
+        }, appConfig.toastTimeoutInSeconds * 1000);
     };
-    const intervalID = setInterval(applyToIframes, 2000);
 
 
-    function applyToIframes() {
-        document.onpaste = (event) => {
-            event.clipboardData.setData("text/plain",
-                appConfig.copyBlockedClipboardContent
-            );
+    jQuery(document).on("paste", function (e) {
+        e.preventDefault();
+        console.log("calling paste on document");
+        reactOnPaste();
+        return false;
+    });
+    jQuery("div").on("paste", function (e) {
+        e.preventDefault();
+        reactOnPaste();
+        console.log("calling paste on div");
+        return false;
+    });
 
-            changeStatus();
-            event.preventDefault();
-            timeoutVariable = setTimeout(() => {
-                toastStatus = false;
-            }, appConfig.toastTimeoutInSeconds * 1000);
+
+    jQuery(document.body).on("dragover", function(e) {
+            e.preventDefault();
+            console.log("drag over called");
+            reactOnPaste();
             return false;
-        };
+       });
+
+       jQuery(document.body).on("drop", function(e){
+            e.preventDefault();
+            console.log("drop called");
+            reactOnPaste();
+            return false;
+        });
+
+
+    let position: string;
+    if (props.location === "top") {
+        position = "top";
+    } else {
+        position = "bottom";
     }
-
-    document.onpaste = (event) => {
-        event.clipboardData.setData("text/plain",
-                appConfig.copyBlockedClipboardContent
-            );
-        changeStatus();
-        event.preventDefault();
-        timeoutVariable = setTimeout(() => {
-            toastStatus = false;
-        }, appConfig.toastTimeoutInSeconds * 1000);
-        return false;
-    };
-
-    document.ondragstart = (event) => {
-        event.preventDefault();
-        changeStatus();
-        timeoutVariable = setTimeout(() => {
-            toastStatus = false;
-        }, appConfig.toastTimeoutInSeconds * 1000);
-        return false;
-    };
-    let position:string;
-    if(props.location==='top'){
-        position='top';
-    }else{
-        position='bottom';
-    }
-
 </script>
 
 <div
     id="toast-top-left"
-    class="fixed z-[1000] flex items-start w-full max-w-xl p-0 shadow-md {position}-5 right-5" style={toastStatus
-        ? 'display: block !important'
-        : 'display: none !important'}
+    class="fixed z-[1000] flex items-start w-full max-w-xl p-0 shadow-md {position}-5 right-5"
+    style={toastStatus
+        ? "display: block !important"
+        : "display: none !important"}
     role="alert"
 >
-<AlertContent {props} />
+    <AlertContent {props} />
 </div>
