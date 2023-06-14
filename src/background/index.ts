@@ -98,7 +98,10 @@ async function fetchConfigurationFromAPI(url: string): Promise<JSON> {
 
 async function loadOrUpdateConfiguration() {
     const internalAPIJsonValue = await fetchConfigurationFromAPI(appConfig.policyConfig.internalUrl);
-    const externalAPIJsonValue = await fetchConfigurationFromAPI(appConfig.policyConfig.externalUrl);
+    let externalAPIJsonValue={};
+    if(appConfig.policyConfig.internalUrl!==appConfig.policyConfig.externalUrl){
+        externalAPIJsonValue = await fetchConfigurationFromAPI(appConfig.policyConfig.externalUrl);
+    }
     const mergeResult = merge.withOptions(
         { mergeArrays: true },internalAPIJsonValue, externalAPIJsonValue);
 
