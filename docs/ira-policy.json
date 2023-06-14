@@ -8,6 +8,16 @@
       ]
     },
     {
+      "exclude_group": [
+        {
+          "url": "^https?:\\/\\/(www\\.)?coauth\\.dev?(\\/.*)?$"
+        },
+        {
+          "url": "^https?:\\/\\/(www\\.)?ira.coauth\\.dev?(\\/.*)?$"
+        }
+      ]
+    },
+    {
       "disclaimer_group": [
         {
           "url": "^https?:\\/\\/(www\\.)?stackoverflow\\.com?(\\/.*)?$"
@@ -57,7 +67,7 @@
           "description": "The website you are trying to access has been blocked globally across organization for security reasons. For more information on the policy you can visit [link](https://ira.coauth.dev). Contact administrator, incase of any discrepancy."
         }
       },
-      "resources": [
+      "resources_include": [
         "block_page_group"
       ]
     },
@@ -72,9 +82,11 @@
           "description": "As per the organizations policy. Please ensure that you do not enter any company sensitive information on these sites that you navigate hereforth. For more information on the policy you can visit [link](https://ira.coauth.dev)."
         }
       },
-      "resources": [
-        "bot_group",
-        "disclaimer_group"
+      "resources_include": [
+        "<all_urls>"
+      ],
+      "resources_exclude": [
+        "exclude_group"
       ]
     },
     {
@@ -88,7 +100,7 @@
           "description": "As per the organizations policy. Please ensure that you do not enter any company sensitive information on these sites that you navigate hereforth. For more information on the policy you can visit [link](https://ira.coauth.dev)."
         }
       },
-      "resources": [
+      "resources_include": [
         "disclaimer_group_2"
       ]
     },
@@ -103,7 +115,7 @@
           "description": "As per the organizations policy. Please ensure that you do not enter any company sensitive information / data on these sites. For more information on the policy you can visit [link](https://ira.coauth.dev)."
         }
       },
-      "resources": [
+      "resources_include": [
         "source_group",
         "bot_group"
       ]
@@ -118,7 +130,7 @@
           "description": "For security reasons **copy action** has been blocked on this website"
         }
       },
-      "resources": [
+      "resources_include": [
         "bot_group",
         "block_cut_copy_paste_group"
       ]
@@ -133,7 +145,7 @@
           "description": "For security reasons **paste action** has been blocked on this website"
         }
       },
-      "resources": [
+      "resources_include": [
         "bot_group",
         "block_cut_copy_paste_group"
       ]
@@ -148,7 +160,7 @@
           "description": "For security reasons **cut action** has been blocked on this website"
         }
       },
-      "resources": [
+      "resources_include": [
         "bot_group",
         "block_cut_copy_paste_group"
       ]

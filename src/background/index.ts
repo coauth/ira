@@ -1,7 +1,7 @@
 import { storage } from "../storage";
 import browser from "webextension-polyfill";
 import merge from "ts-deepmerge";
-import { policyValidator, type TPolicyAction, policyParser, type TPolicyMessage } from "src/components/helpers/PolicyHelper";
+import { policyValidator, type TPolicyAction, policyParser, type TPolicyMessage, type TPolicySummary } from "src/components/helpers/PolicyHelper";
 import appConfig from "src/config/config";
 import type { TMessageExchange } from "src/components/types/MessageExchangeType";
 import type { TMessageCategory } from "src/components/types/MessageCategoryTypes";
@@ -9,10 +9,13 @@ import moment, { type Moment } from 'moment';
 
 let configuration = new Map<string, Map<string,TPolicyMessage>>();
 
+let resourceGroupMap = new Map<string, any>();
+
 let messageStore = new Map<number, Array<TPolicyAction>>();
 
 let disclaimerAcceptanaceStore = new Map<string, Date>();
 
+let stickyCancellationStore = new Map<string, Date>();
 
 
 const cleanUpOnTabClose = ((tabId: number,): void => {
@@ -24,7 +27,14 @@ browser.tabs.onRemoved.addListener(cleanUpOnTabClose);
 browser.webNavigation.onBeforeNavigate.addListener((details) => {
     const { tabId, url, timeStamp, frameId } = details;
 
-    let policyActions: Array<TPolicyAction> = policyValidator(url,configuration,disclaimerAcceptanaceStore);
+    let domain = (new URL(url));
+
+    if(url==='about:blank'){
+        return;
+    }
+
+
+    let policyActions: Array<TPolicyAction> = policyValidator(url,configuration,disclaimerAcceptanaceStore,stickyCancellationStore,resourceGroupMap);
     if(policyActions.length!=0){
         messageStore.set(tabId, policyActions);
         for(let policyAction of policyActions){
@@ -33,6 +43,9 @@ browser.webNavigation.onBeforeNavigate.addListener((details) => {
                 break;
             }
         }
+    }else{
+        policyActions=[];
+        messageStore.set(tabId, policyActions);
     }
 });
 
@@ -51,6 +64,14 @@ const processContentScriptsListener = ((request: any, sender, sendResponse): voi
             console.log("domain.hostname",domain.hostname);
             disclaimerAcceptanaceStore.set(domain.hostname,newTime.toDate());
             console.log("disclaimerAcceptanaceStore",disclaimerAcceptanaceStore);
+        }else if(category.category === 'STORE_STICKY_CANCELLATION') {
+            console.log("cancellation received");
+            console.log("category.data.duration",category.data.duration);
+            const newTime=moment().add(category.data.duration,'seconds');
+            let domain = (new URL(sender.url));
+            console.log("domain.hostname",domain.hostname);
+            stickyCancellationStore.set(domain.hostname,newTime.toDate());
+            console.log("disclaimerAcceptanaceStore",stickyCancellationStore);
         }
     }
 });
@@ -89,12 +110,12 @@ async function loadOrUpdateConfiguration() {
     const mergeResult = merge.withOptions(
         { mergeArrays: true },internalAPIJsonValue, externalAPIJsonValue);
 
-    const parsedPolicy=policyParser(mergeResult);
+    const tPolicySummary=policyParser(mergeResult);
 
-    console.log("fecth API completed",parsedPolicy);
+    console.log("fecth API completed",tPolicySummary);
     
-    if (!isEmptyObject(parsedPolicy)) {
-        saveConfigToStorage(parsedPolicy);
+    if (!isEmptyObject(tPolicySummary)) {
+        saveConfigToStorage(tPolicySummary);
     } else {
         loadConfigFromStorage();
     }
@@ -102,21 +123,24 @@ async function loadOrUpdateConfiguration() {
 
 async function loadConfigFromStorage(): Promise<void> {
     return browser.storage.local.get(["config"]).then((result) => {
-        configuration = result.key;
+        const policyConfig=result.key as TPolicySummary;
+        configuration = policyConfig.policy;
+        resourceGroupMap=policyConfig.resourceGroups;
         return Promise.resolve();
     });
 }
 
-async function saveConfigToStorage(value: Map<string,Map<string,TPolicyMessage>>) {
+async function saveConfigToStorage(value: TPolicySummary) {
     if (!isEmptyObject(value)) {
         browser.storage.local.set({ "config": value }).then(() => {
-            configuration = value;
+            configuration = value.policy;
+            resourceGroupMap=value.resourceGroups;
         });
     }
 
 }
 
-function isEmptyObject(value: Map<string,Map<string,TPolicyMessage>>): boolean {
+function isEmptyObject(value: TPolicySummary): boolean {
     if (JSON.stringify(value) === '{}') return true;
     else return false;
 }
