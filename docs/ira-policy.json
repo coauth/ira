@@ -77,24 +77,6 @@
         "message": {
           "alertType": "warning",
           "location": "bottom",
-          "durationInSeconds": 60,
-          "title": "Data disclosure disclaimer (paused for 60 seconds)",
-          "description": "As per the organizations policy. Please ensure that you do not enter any company sensitive information on these sites that you navigate hereforth. For more information on the policy you can visit [link](https://ira.coauth.dev)."
-        }
-      },
-      "resources_include": [
-        "<all_urls>"
-      ],
-      "resources_exclude": [
-        "exclude_group"
-      ]
-    },
-    {
-      "action": "disclaimer",
-      "props": {
-        "message": {
-          "alertType": "warning",
-          "location": "bottom",
           "durationInSeconds": -1,
           "title": "Data disclosure disclaimer",
           "description": "As per the organizations policy. Please ensure that you do not enter any company sensitive information on these sites that you navigate hereforth. For more information on the policy you can visit [link](https://ira.coauth.dev)."
@@ -116,8 +98,10 @@
         }
       },
       "resources_include": [
-        "source_group",
-        "bot_group"
+        "<all_urls>"
+      ],
+      "resources_exclude": [
+        "exclude_group"
       ]
     },
     {
