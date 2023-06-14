@@ -24,28 +24,24 @@
 
     jQuery(document).on("paste", function (e) {
         e.preventDefault();
-        console.log("calling paste on document");
         reactOnPaste();
         return false;
     });
     jQuery("div").on("paste", function (e) {
         e.preventDefault();
         reactOnPaste();
-        console.log("calling paste on div");
         return false;
     });
 
 
     jQuery(document.body).on("dragover", function(e) {
             e.preventDefault();
-            console.log("drag over called");
             reactOnPaste();
             return false;
        });
 
        jQuery(document.body).on("drop", function(e){
             e.preventDefault();
-            console.log("drop called");
             reactOnPaste();
             return false;
         });

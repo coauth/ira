@@ -20,7 +20,6 @@
                 duration: durationInSeconds,
             },
         };
-        console.log("askMessage", askMessage);
         browser.runtime.sendMessage(askMessage);
     };
 

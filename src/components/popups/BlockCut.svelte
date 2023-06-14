@@ -23,7 +23,6 @@
     jQuery(document).on("cut", function (e) {
         e.preventDefault();
         changeStatus();
-        console.log("cut called");
         navigator.clipboard.writeText(appConfig.cutBlockedClipboardContent);
         timeoutVariable = setTimeout(() => {
             toastStatus = false;

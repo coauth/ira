@@ -22,10 +22,8 @@ const ALL_URLS_VAL:string='<all_urls>';
 export const policyValidator = (url: string, configurationMap: Map<string, Map<string, TPolicyMessage>>,
     disclaimerAcceptanceStore: Map<string, Date>, stickyCancellationStore: Map<string, Date>, resourceGroupMap: Map<string, any>
 ): Array<TPolicyAction> => {
-    let policyAction: TPolicyAction;
 
     let policyActions: Array<TPolicyAction> = [];
-    console.log("configurationMap", configurationMap);
     for (const [key, value] of Object.entries(configurationMap) as Array<[string, Map<string, TPolicyMessage>]>) {
         const regex = new RegExp(key)
         if (regex.test(url) || key===ALL_URLS_VAL) {
@@ -35,20 +33,16 @@ export const policyValidator = (url: string, configurationMap: Map<string, Map<s
                 if (key === 'disclaimer' && disclaimerAcceptanceStore.has(domain.hostname)) {
                     const storeDate = disclaimerAcceptanceStore.get(domain.hostname);
                     if (storeDate > new Date()) {
-                        console.log("greater");
                         continue;
                     } else {
-                        console.log("not greater");
                         disclaimerAcceptanceStore.delete(domain.hostname)
                     }
                 }
                 if (key === 'sticky' && stickyCancellationStore.has(domain.hostname)) {
                     const storeDate = stickyCancellationStore.get(domain.hostname);
                     if (storeDate > new Date()) {
-                        console.log("greater");
                         continue;
                     } else {
-                        console.log("not greater");
                         stickyCancellationStore.delete(domain.hostname)
                     }
                 }
@@ -59,7 +53,6 @@ export const policyValidator = (url: string, configurationMap: Map<string, Map<s
                         const resourceUrls = resourceGroupMap[groupName];
                         for (let urlObject of resourceUrls) {
                             let urlKey = urlObject["url"];
-                            console.log(urlKey);
                             const regexExclude = new RegExp(urlKey);
                             if (regexExclude.test(url)) {
                                 skipSinceExcludeGroup = true;
@@ -75,18 +68,17 @@ export const policyValidator = (url: string, configurationMap: Map<string, Map<s
                     }
                 }
 
-                policyAction = {
+                let policyAction: TPolicyAction = {
                     action: key,
                     message: messageProps.message
                 }
                 policyActions.push(policyAction);
             }
-            if(!configurationMap.has(ALL_URLS_VAL)){
+/*             if(!configurationMap.has(ALL_URLS_VAL)){
                 break;
-            }
+            } */
         }
     }
-    console.log("policy applicable count", policyActions.length);
     return policyActions;
 }
 

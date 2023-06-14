@@ -56,22 +56,14 @@ const processContentScriptsListener = ((request: any, sender, sendResponse): voi
         if (category.category === 'REQUEST_MESSAGE') {
             sendResponse({ response: messageStore.get(sender.tab.id) });
         }else if(category.category === 'STORE_DISCLAIMER_ACCEPTANCE') {
-            console.log("disclaimer received");
-            console.log("category.data.duration",category.data.duration);
             
             const newTime=moment().add(category.data.duration,'seconds');
             let domain = (new URL(sender.url));
-            console.log("domain.hostname",domain.hostname);
             disclaimerAcceptanaceStore.set(domain.hostname,newTime.toDate());
-            console.log("disclaimerAcceptanaceStore",disclaimerAcceptanaceStore);
         }else if(category.category === 'STORE_STICKY_CANCELLATION') {
-            console.log("cancellation received");
-            console.log("category.data.duration",category.data.duration);
             const newTime=moment().add(category.data.duration,'seconds');
             let domain = (new URL(sender.url));
-            console.log("domain.hostname",domain.hostname);
             stickyCancellationStore.set(domain.hostname,newTime.toDate());
-            console.log("disclaimerAcceptanaceStore",stickyCancellationStore);
         }
     }
 });
@@ -112,8 +104,6 @@ async function loadOrUpdateConfiguration() {
 
     const tPolicySummary=policyParser(mergeResult);
 
-    console.log("fecth API completed",tPolicySummary);
-    
     if (!isEmptyObject(tPolicySummary)) {
         saveConfigToStorage(tPolicySummary);
     } else {

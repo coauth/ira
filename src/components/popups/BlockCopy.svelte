@@ -20,7 +20,6 @@
 
     jQuery(document).on("copy", function (e) {
         changeStatus();
-        console.log("copy called");
         navigator.clipboard.writeText(appConfig.copyBlockedClipboardContent);
         timeoutVariable = setTimeout(() => {
             toastStatus = false;

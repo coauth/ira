@@ -27,7 +27,6 @@
                 duration: durationInSeconds,
             },
         };
-        console.log("askMessage", askMessage);
         browser.runtime.sendMessage(askMessage);
     };
 
@@ -52,12 +51,11 @@
     const closeModal = (durationInSeconds: number) => {
         document.getElementById("overlayCustom").style.display = "none";
         document.getElementById("staticModal").style.display = "none";
-        console.log("calling storing");
- //       if (durationInSeconds > 0) {
-            console.log("called storing");
-            durationInSeconds=60;
+        document.getElementById("staticModal").style.visibility = "hidden";
+        document.getElementById("overlayCustom").style.visibility = "hidden";
+        if (durationInSeconds > 0) {
             diclaimerAccepted(durationInSeconds);
-   //     }
+        }
     };
 </script>
 
@@ -65,7 +63,7 @@
 
 <div
     id="overlayCustom"
-    style="position: fixed; display: block;  width: 100%; height: 100%; top: 0; left: 0; right: 0; bottom: 0; background-color: rgba(0,0,0,0.5); z-index: 1000;  cursor: pointer;"
+    style="position: fixed; display: block;visibility:visible;  width: 100%; height: 100%; top: 0; left: 0; right: 0; bottom: 0; background-color: rgba(0,0,0,0.5); z-index: 1000;  cursor: pointer;"
 />
 <!-- Main modal -->
 <div
@@ -74,7 +72,7 @@
     tabindex="-1"
     aria-hidden="true"
     class="fixed top-0 left-0 right-0 hidden w-full p-4 overflow-x-hidden overflow-y-auto md:inset-0 h-[calc(100%-1rem)] max-h-full"
-    style="display:block !important;   z-index: 1001;"
+    style="display:block !important; visibility:visible !important; z-index: 1001;"
 >
     <div
         class="relative w-full max-w-2xl max-h-full"

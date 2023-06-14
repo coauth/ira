@@ -24,7 +24,6 @@
         messageDescription = actor.message.description;
         htmlContent = filterXSS(mdConvertor.makeHtml(messageDescription));
         alertType = actor.message.alertType;
-        console.log(actor);
         if (alertType == "danger") {
             alertColor = "red";
         } else if (alertType == "warning") {

@@ -79,7 +79,7 @@
           "location": "bottom",
           "durationInSeconds": -1,
           "title": "Data disclosure disclaimer",
-          "description": "As per the organizations policy. Please ensure that you do not enter any company sensitive information on these sites that you navigate hereforth. For more information on the policy you can visit [link](https://ira.coauth.dev)."
+          "description": "As per the Ira's policy. Please ensure that you do not enter any organization sensitive information on these sites that you navigate hereforth. For more information on the policy you can visit [link](https://ira.coauth.dev)."
         }
       },
       "resources_include": [
@@ -94,7 +94,7 @@
           "location": "bottom",
           "durationInSeconds": 60,
           "title": "Data disclosure disclaimer",
-          "description": "As per the organizations policy. Please ensure that you do not enter any company sensitive information / data on these sites. For more information on the policy you can visit [link](https://ira.coauth.dev)."
+          "description": "As per the Ira's policy. Please ensure that you do not enter any organization sensitive information on these sites that you navigate hereforth. For more information on the policy you can visit [link](https://ira.coauth.dev)."
         }
       },
       "resources_include": [
@@ -111,11 +111,12 @@
           "alertType": "info",
           "title": "Copy action blocked",
           "location": "top",
-          "description": "For security reasons **copy action** has been blocked on this website"
+          "description": "For security reasons **copy action** has been blocked on this website by Ira"
         }
       },
       "resources_include": [
         "bot_group",
+        "disclaimer_group_2",
         "block_cut_copy_paste_group"
       ]
     },
@@ -126,11 +127,12 @@
           "alertType": "info",
           "title": "Paste action blocked",
           "location": "bottom",
-          "description": "For security reasons **paste action** has been blocked on this website"
+          "description": "For security reasons **paste action** has been blocked on this website by Ira"
         }
       },
       "resources_include": [
         "bot_group",
+        "disclaimer_group_2",
         "block_cut_copy_paste_group"
       ]
     },
@@ -141,11 +143,12 @@
           "alertType": "info",
           "title": "Cut action blocked",
           "location": "bottom",
-          "description": "For security reasons **cut action** has been blocked on this website"
+          "description": "For security reasons **cut action** has been blocked on this website by Ira"
         }
       },
       "resources_include": [
         "bot_group",
+        "disclaimer_group_2",
         "block_cut_copy_paste_group"
       ]
     }
