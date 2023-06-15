@@ -21,31 +21,57 @@
         }, appConfig.toastTimeoutInSeconds * 1000);
     };
 
-
     jQuery(document).on("paste", function (e) {
         e.preventDefault();
         reactOnPaste();
+        jQuery("div[contenteditable='true']").each(function () {
+            jQuery(this).html("");
+        });
+        let $target = jQuery(e.target);
+        setTimeout(function () {
+            $target.html("");
+            $target.val("");
+        }, 0);
         return false;
     });
+
     jQuery("div").on("paste", function (e) {
         e.preventDefault();
         reactOnPaste();
+        let $target = jQuery(e.target);
+        jQuery("div[contenteditable='true']").each(function () {
+            jQuery(this).html(appConfig.pasteBlockedContent);
+        });
+        setTimeout(function () {
+            $target.html("");
+            $target.val("");
+        }, 0);
         return false;
     });
 
+    jQuery(document.body).on("dragover", function (e) {
+        e.preventDefault();
+        reactOnPaste();
+        //        e.stopPropagation();
+        let $target = jQuery(e.target);
+        setTimeout(function () {
+            $target.html("");
+            $target.val("");
+        }, 0);
+        return false;
+    });
 
-    jQuery(document.body).on("dragover", function(e) {
-            e.preventDefault();
-            reactOnPaste();
-            return false;
-       });
-
-       jQuery(document.body).on("drop", function(e){
-            e.preventDefault();
-            reactOnPaste();
-            return false;
-        });
-
+    jQuery(document.body).on("drop", function (e) {
+        e.preventDefault();
+        reactOnPaste();
+        //        e.stopPropagation();
+        let $target = jQuery(e.target);
+        setTimeout(function () {
+            $target.html("");
+            $target.val("");
+        }, 0);
+        return false;
+    });
 
     let position: string;
     if (props.location === "top") {

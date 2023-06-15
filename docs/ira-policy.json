@@ -77,7 +77,7 @@
         "message": {
           "alertType": "warning",
           "location": "bottom",
-          "durationInSeconds": -1,
+          "durationInSeconds": 60,
           "title": "Data disclosure disclaimer",
           "description": "As per the Ira's policy. Please ensure that you do not enter any organization sensitive information on these sites that you navigate hereforth. For more information on the policy you can visit [link](https://ira.coauth.dev)."
         }

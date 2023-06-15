@@ -24,15 +24,14 @@ const cleanUpOnTabClose = ((tabId: number,): void => {
 
 browser.tabs.onRemoved.addListener(cleanUpOnTabClose);
 
-browser.webNavigation.onBeforeNavigate.addListener((details) => {
-    const { tabId, url, timeStamp, frameId } = details;
+browser.tabs.onUpdated.addListener((tabId, changeInfo, tabInfo) => {
 
-    let domain = (new URL(url));
-
-    if(url==='about:blank'){
+    let url:string;
+    if(changeInfo.status && changeInfo.status==='loading' && changeInfo.url){
+        url=changeInfo.url;
+    }else{
         return;
     }
-
 
     let policyActions: Array<TPolicyAction> = policyValidator(url,configuration,disclaimerAcceptanaceStore,stickyCancellationStore,resourceGroupMap);
     if(policyActions.length!=0){
@@ -106,7 +105,6 @@ async function loadOrUpdateConfiguration() {
         { mergeArrays: true },internalAPIJsonValue, externalAPIJsonValue);
 
     const tPolicySummary=policyParser(mergeResult);
-
     if (!isEmptyObject(tPolicySummary)) {
         saveConfigToStorage(tPolicySummary);
     } else {

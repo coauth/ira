@@ -8,7 +8,8 @@ const appConfig = {
     },
     toastTimeoutInSeconds:5,
     copyBlockedClipboardContent:"Copy operation from this website is disabled",
-    cutBlockedClipboardContent:"Cut operation from this website is disabled"
+    cutBlockedClipboardContent:"Cut operation from this website is disabled",
+    pasteBlockedContent:"Please refrain from using paste on this website."
 };
 
 export default appConfig;

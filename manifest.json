@@ -1,7 +1,7 @@
 {
     "name": "Ira",
-    "description": "The guard to make users aware of potential risks of browsing on third party sites",
-    "version": "1.0",
+    "description": "The browser guard to make users aware when browsing on third party sites",
+    "version": "1.0.0",
     "manifest_version": 3,
     "icons": {
         "16": "src/assets/icons/icon_16.png",
@@ -33,7 +33,7 @@
             "128": "src/assets/icons/icon_128.png"
         }
     },
-    "permissions": ["storage","webNavigation","alarms","webRequest"],
+    "permissions": ["storage","alarms"],
     "host_permissions": [
         "<all_urls>"
       ]

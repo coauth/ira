@@ -22,7 +22,6 @@ const ALL_URLS_VAL:string='<all_urls>';
 export const policyValidator = (url: string, configurationMap: Map<string, Map<string, TPolicyMessage>>,
     disclaimerAcceptanceStore: Map<string, Date>, stickyCancellationStore: Map<string, Date>, resourceGroupMap: Map<string, any>
 ): Array<TPolicyAction> => {
-
     let policyActions: Array<TPolicyAction> = [];
     for (const [key, value] of Object.entries(configurationMap) as Array<[string, Map<string, TPolicyMessage>]>) {
         const regex = new RegExp(key)
